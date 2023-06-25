@@ -1,26 +1,47 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
-Vue.use(VueRouter)
+import ElementManager from '../views/ElementManager.vue'
+import AddElement from '../views/AddElement.vue'
+import EditElement from '../views/EditElement.vue'
+import ViewElement from '../views/ViewElement.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
+    redirect : '/elements',
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/elements',
+    name: 'ElementManager',
+    component: ElementManager
+  },
+  {
+    path: '/elements/add',
+    name: 'AddElement',
+    component: AddElement
+  },
+  {
+    path: '/elements/edit/:elementId',
+    name: 'EditElement',
+    component: EditElement
+  },
+  {
+    path: '/elements/view/:elementId',
+    name: 'ViewElement',
+    component: ViewElement
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'PageNotFound',
+    component: PageNotFound
+  }  
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 

@@ -1,10 +1,19 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 
-Vue.config.productionTip = false
+/** 
+ * Font Awesome Icon
+ */
+import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+/** 
+ * Bootstrap CSS, JS
+ */
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
+
+import './styles.css'
+
+createApp(App).use(store).use(router).mount('#app')
