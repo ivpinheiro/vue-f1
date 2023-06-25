@@ -22,7 +22,7 @@ export class ElementService {
         let dataURL = `${this.serverURL}/elements/${elementId}`;
         return axios.delete(dataURL);
     }
-    static getGroup(element){
+    static getAllGroups(element){
         let groupId = element.groupId;
         let dataURL = `${this.serverURL}/groups/${groupId}`;
         return axios.get(dataURL);

@@ -18,3 +18,7 @@ body {
 .loader-img {
     width: 250px;
 }
+
+.container-card {
+    background-color: #1987542f;
+}

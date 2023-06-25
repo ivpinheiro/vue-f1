@@ -55,7 +55,7 @@
     <div class="container mt-3" v-if="elements.length > 0">
         <div class="row">
             <div class="col-md-6"  v-for="element of elements" :key="element">
-                <div class="card my-2 list-group-item-success shadow-lg">
+                <div class="container-card card my-2 list-group-item-success shadow-lg">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-sm-4">

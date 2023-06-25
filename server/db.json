@@ -23,9 +23,15 @@
       "id": 123456,
       "country": "RU",
       "groupId": 2
+    },
+    {
+      "name": "Ivan",
+      "id": "1337",
+      "country": "BR",
+      "groupId": "1"
     }
   ],
-  "groups":[
+  "groups": [
     {
       "id": 1,
       "name": "Teste1"
