@@ -14,16 +14,16 @@
             <div class="col-md-4">
                 <form @submit.prevent="submitCreate()">
                     <div class="mb-2">
-                        <input v-model="element.name" type="text" class="form-control" placeholder="Name">
+                        <input v-model="element.name" type="text" class="form-control" placeholder="Name" required>
                     </div>
                     <div class="mb-2">
-                        <input v-model="element.id" type="text" class="form-control" placeholder="ID">
+                        <input v-model="element.id" type="text" class="form-control" placeholder="ID" required>
                     </div>
                     <div class="mb-2">
-                        <input v-model="element.country" type="text" class="form-control" placeholder="Country">
+                        <input v-model="element.country" type="text" class="form-control" placeholder="Country" required>
                     </div>
                     <div class="mb-2">
-                        <input v-model="element.groupId" type="text" class="form-control" placeholder="Group ID">
+                        <input v-model="element.groupId" type="text" class="form-control" placeholder="Group ID" required>
                     </div>
                     <div class="mb-2">
                         <input type="submit" class="btn btn-success" value="Create">
@@ -38,6 +38,9 @@
 </template>
 
 <script>
+/** 
+ * GroupID list is not configurable
+ */
 import { ElementService } from '../services/ElementService.js'
     export default {
         name: 'AddElement',

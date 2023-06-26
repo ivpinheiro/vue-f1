@@ -78,10 +78,10 @@
                                 </ul>
                             </div>
                             <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
-                                <router-link to="/elements/view/:contactId" class="btn btn-warning my-1">
+                                <router-link :to="`/elements/view/${element.id}`" class="btn btn-warning my-1">
                                     <i class="fa fa-eye"></i>            
                                 </router-link>
-                                <router-link to="/elements/edit/:contactId" class="btn btn-primary my-1">
+                                <router-link :to="`/elements/edit/${element.id}`" class="btn btn-primary my-1">
                                     <i class="fa fa-pen"></i>            
                                 </router-link>
                                 <button class="btn btn-danger my-1">
