@@ -5,6 +5,7 @@ import AddElement from '../views/AddElement.vue'
 import EditElement from '../views/EditElement.vue'
 import ViewElement from '../views/ViewElement.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import LoginPage from '../views/LoginPage.vue'
 
 const routes = [
   {
@@ -37,7 +38,12 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'PageNotFound',
     component: PageNotFound
-  }  
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage
+  }    
 ]
 
 const router = createRouter({
