@@ -6,6 +6,7 @@ import EditElement from '../views/EditElement.vue'
 import ViewElement from '../views/ViewElement.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import LoginPage from '../views/LoginPage.vue'
+import AboutView from '../views/AboutView.vue'
 
 const routes = [
   {
@@ -43,7 +44,12 @@ const routes = [
     path: '/login',
     name: 'LoginPage',
     component: LoginPage
-  }    
+  },
+  {
+    path: '/about',
+    name: 'AboutView',
+    component: AboutView
+  }      
 ]
 
 const router = createRouter({
