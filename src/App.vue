@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="nav-bar">
-      <NavBar></NavBar>
+      <NavBar/>
     </div>
     <div class="content">
+      <!-- <PaginationTable/> -->
       <router-view />
     </div>
   </div>

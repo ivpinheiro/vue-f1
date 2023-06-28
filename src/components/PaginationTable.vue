@@ -1,0 +1,53 @@
+<template>
+    <div class="container mt-3 text-center"> <!-- Adicione a classe "text-center" para centralizar todo o conteúdo -->
+        <nav v-if="totalPages > 1">
+            <ul class="pagination justify-content-center pagination-lg">
+                <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                    <a class="page-link custom-link" href="#" @click="changePage(1)">First</a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage - 1)">Previous</a>
+                </li>
+                <li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
+                    <a class="page-link custom-link" href="#" @click="changePage(page)">{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage + 1)">Next</a>
+                </li>
+                <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+                    <a class="page-link custom-link" href="#" @click="changePage(totalPages)">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</template>
+  
+<script>
+export default {
+    props: {
+        totalPages: {
+            type: Number,
+            required: true
+        },
+        currentPage: {
+            type: Number,
+            required: true
+        },
+        changePage: {
+            type: Function,
+            required: true
+        }
+    }
+};
+</script>
+  
+<style scoped>
+.custom-link {
+    background-color: #198754;
+    /* Defina a cor de fundo dos links */
+    color: #ffffff;
+    /* Defina a cor do texto dos links */
+}
+</style>
+
+  
