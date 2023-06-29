@@ -8,9 +8,26 @@
                 <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
                     <a class="page-link custom-link" href="#" @click="changePage(currentPage - 1)">Previous</a>
                 </li>
-                <li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
-                    <a class="page-link custom-link" href="#" @click="changePage(page)">{{ page }}</a>
+                <li class="page-item" v-if="currentPage > 2" :key="currentPage-2">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage-2)">{{ currentPage - 2 }}</a>
                 </li>
+                <li class="page-item" v-if="currentPage > 1" :key="currentPage-1">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage-1)">{{ currentPage - 1 }}</a>
+                </li>
+                <li class="page-item active" v-if="totalPages > 1" :key="currentPage">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage)">{{ currentPage }}</a>
+                </li>
+                <li class="page-item" v-if="totalPages > currentPage" :key="currentPage+1">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage+1)">{{ currentPage + 1 }}</a>
+                </li>
+                <li class="page-item" v-if="totalPages > currentPage + 1" :key="currentPage+2">
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage+2)">{{ currentPage + 2 }}</a>
+                </li>
+                <!--
+                    <li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
+                        <a class="page-link custom-link" href="#" @click="changePage(page)">{{ page }}</a>
+                    </li>
+                -->
                 <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
                     <a class="page-link custom-link" href="#" @click="changePage(currentPage + 1)">Next</a>
                 </li>
