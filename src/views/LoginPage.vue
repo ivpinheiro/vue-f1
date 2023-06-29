@@ -1,26 +1,27 @@
 <template>
+    <div class="nav-bar">
+      <NavBar titulo="Formula 1 Data Tool"/>
+    </div>
     <section class="gradient-custom">
         <div class="container align-items-center">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-xl-5">
-              <div class="card bg-white text-dark" style="border-radius: 1rem;">
+              <div class="card login-background text-dark" style="border-radius: 1rem;">
                 <div class="card-body p-3 text-center">
       
                   <div class=" pb-5">
       
-                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                    <p class="text-dark-50 mb-5">Please enter your login and password!</p>
+                    <h2 class="fw-bold mb-2 text-uppercase center">Login</h2>
+                    <p class="text-dark-50 mb-3">Por favor, insira suas credenciais corretamente para ter acesso ao sistema!</p>
       
                     <div class="form-outline form-dark mb-4">
-                      <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typeEmailX">Email</label>
+                      <input v-model="input.username" type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Login"/>
                     </div>
       
                     <div class="form-outline form-dark mb-4">
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typePasswordX">Password</label>
+                      <input v-model="input.password" type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Senha"/>
                     </div>      
-                    <button class="btn btn-lg px-5 btn btn-success" type="submit">Login</button>      
+                    <button class="btn btn-lg px-5 btn btn-success" type="submit" @click="login()">Login</button>      
                   </div>
                 </div>
               </div>
@@ -31,33 +32,53 @@
 </template>
 
 <script>
+import { ElementService } from '../services/ElementService.js'
+import NavBar from '@/components/NavBar.vue';
 export default {
-    name: 'LoginPage',
+    name: "LoginPage",
     data() {
         return {
             input: {
                 username: "",
                 password: ""
             }
-        }
+        };
     },
     methods: {
-        login() {
+        async login() {
             if (this.input.username != "" && this.input.password != "") {
-                // This should actually be an api call not a check against this.$parent.mockAccount
-                if (this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                    this.$emit("authenticated", true);
-                    this.$router.replace({ name: "Secure" });
-                } else {
-                    console.log("The username and / or password is incorrect");
-                }
-            } else {
-                console.log("A username and password must be present");
+              try{
+                const response = await ElementService.authenticate(this.input);
+                const token = response.data.token
+                const permissoes = response.data.permissoes
+                localStorage.setItem('token', token);
+                localStorage.setItem('permissoes', permissoes);
+              }
+              catch(e){
+                console.log(e)
+                console.log("Erro no login")
+                
+              }
+            }
+            else {
+                alert("A username and password must be present");
             }
         }
-    }
+    },
+    components: { NavBar }
 }
 </script>
 
 <style scoped>
+  h2{
+    color: #198754;
+  }
+  input{
+    text-align: center;
+  }
+  ::-webkit-input-placeholder {
+    color: #C6C6C6;
+    font-style: italic; 
+    text-align: center;
+  }
 </style>

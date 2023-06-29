@@ -1,4 +1,7 @@
 <template>
+    <div class="nav-bar">
+      <NavBar :titulo="person.name" :tipo="person.type" isHomePage />
+    </div>
     <div class="container mt-3">
         <div class="row">
             <div class="col">
@@ -71,14 +74,16 @@ import { ElementService } from '../services/ElementService.js'
 import CardView from '../components/CardView.vue';
 import PaginationTable from '../components/PaginationTable.vue';
 import SpinnerLoader from '../components/SpinnerLoader.vue'
+import NavBar from '../components/NavBar.vue'
 
 export default {
     name: 'ElementManager',
-    components: { SpinnerLoader, CardView, PaginationTable },
+    components: { SpinnerLoader, CardView, PaginationTable, NavBar },
     data: function () {
         return {
             loading: false,
             elements: [],
+            person: {},
             errorMessage: null,
             pageSize: 6,
             currentPage: 1
@@ -99,6 +104,9 @@ export default {
             this.loading = true;
             let response = await ElementService.getAllElements();
             this.elements = response.data;
+            let nresponse = await ElementService.getPerson();
+            this.person = nresponse.data;
+
             this.loading = false;
         } catch (error) {
             this.errorMessage = error;

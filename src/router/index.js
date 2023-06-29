@@ -7,6 +7,7 @@ import ViewElement from '../views/ViewElement.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import LoginPage from '../views/LoginPage.vue'
 import AboutView from '../views/AboutView.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 const routes = [
   {
@@ -49,7 +50,12 @@ const routes = [
     path: '/about',
     name: 'AboutView',
     component: AboutView
-  }      
+  },
+  {
+    path: '/dash',
+    name: 'Dashboard',
+    component: Dashboard
+  }            
 ]
 
 const router = createRouter({
