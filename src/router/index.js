@@ -13,7 +13,6 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    redirect : '/elements',
     component: HomeView
   },
   {

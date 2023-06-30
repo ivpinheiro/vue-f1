@@ -1,6 +1,6 @@
 <template>
     <div class="nav-bar">
-      <NavBar :titulo="person.name" :tipo="person.type" isDashPage />
+      <NavBar :tipo="person.type" isDashPage />
     </div>
     
 </template>

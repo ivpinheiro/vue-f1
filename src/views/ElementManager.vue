@@ -1,7 +1,6 @@
 <template>
-    <div class="nav-bar">
-      <NavBar :titulo="person.name" :tipo="person.type" isHomePage />
-    </div>
+    <NavBar :titulo="person.name" :tipo="person.type" isHomePage />
+
     <div class="container mt-3">
         <div class="row">
             <div class="col">
