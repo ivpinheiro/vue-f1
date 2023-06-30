@@ -1,5 +1,5 @@
 <template>
-  <NavBar tipo="Administrador" isHomePage />
+  <NavBar :tipo="userType" isHomePage />
   <HomeAdmin v-if="userType == 'Administrador'"/>
   <HomeEscuderia :name="name" v-if="userType == 'Escuderia'"/>
 </template>

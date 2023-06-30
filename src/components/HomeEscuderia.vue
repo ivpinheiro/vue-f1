@@ -1,25 +1,46 @@
 <template>
+
     <div class="homepage">
-        <h2 class="homeAdminGerenciarLabel ajusteMargin">{{name}}</h2>
-        <router-link class="btn btn-lg px-5 btn btn-success" to="/dash" >Exibir relatórios</router-link>
-        <h2 class="homeAdminGerenciarLabel">Gerenciar Tabelas</h2>
-        <div class="gridHome">
-            <router-link class="btn btn-lg px-5 btn btn-success" to="/escuderia" >Gerenciar Escuderias</router-link>
-            <router-link class="btn btn-lg px-5 btn btn-success" to="/piloto" >Gerenciar Pilotos</router-link>
+        <h2 class="titulo ajusteMargin">{{name}}</h2>
+        <div class="gridOverview">
+            <div class="box">
+                <h3>Vitórias</h3>
+                <span>31</span>
+            </div>
+            <div class="box">
+                <h3>Pilotos</h3>
+                <span>25</span>
+            </div>
+            <div class="box">
+                <h3>De</h3>
+                <span>1992</span>
+            </div>
+            <div class="box">
+                <h3>Até</h3>
+                <span>2022</span>
+            </div>
         </div>
+        <h2 class="titulo">Acessar Relatórios</h2>
+        <div>
+            <router-link class="btn btn-lg px-5 btn btn-success" to="/dash" >Exibir relatórios</router-link>
+        </div>
+        <ElementManager/>
     </div>
 </template>
 
 <script>
+    import ElementManager from '@/views/ElementManager.vue';
+
     export default {
-        name: 'HomeEscuderia',
-        props:{
-            name: { 
+    name: "HomeEscuderia",
+    props: {
+        name: {
             type: String,
             required: true
         },
-        }
-    }
+    },
+    components: { ElementManager }
+}
 </script>
 
 <style scoped>
@@ -29,14 +50,14 @@
         align-items: center;
         justify-content: center;
     }
-    .gridHome{
+    .gridOverview{
         display: grid;
         gap: 25px 25px;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         margin-bottom: 40px;
 
     }
-    .homeAdminGerenciarLabel{
+    .titulo{
         margin-bottom: 20px;
         margin-top: 40px;
     }
@@ -44,4 +65,25 @@
     .ajusteMargin{
         margin-top: -10px;
     }
+
+    .box{
+        width: 100px ;
+        height: 100px;
+        border-radius: 15px;
+        border: 5px solid #198754;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .box h3{
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .box span{
+        font-size: 35px;
+        margin-top: -20px;
+    }
+
 </style>
