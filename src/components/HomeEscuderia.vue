@@ -5,19 +5,19 @@
         <div class="gridOverview">
             <div class="box">
                 <h3>Vitórias</h3>
-                <span>31</span>
+                <span>{{vitorias}}</span>
             </div>
             <div class="box">
                 <h3>Pilotos</h3>
-                <span>25</span>
+                <span>{{qtdPilotos}}</span>
             </div>
             <div class="box">
                 <h3>De</h3>
-                <span>1992</span>
+                <span>{{anoInicio}}</span>
             </div>
             <div class="box">
                 <h3>Até</h3>
-                <span>2022</span>
+                <span>{{anoFim}}</span>
             </div>
         </div>
         <h2 class="titulo">Acessar Relatórios</h2>
@@ -36,6 +36,22 @@
     props: {
         name: {
             type: String,
+            required: true
+        },
+        vitorias: {
+            type: Number,
+            required: true
+        },
+        qtdPilotos: {
+            type: Number,
+            required: true
+        },
+        anoInicio: {
+            type: Number,
+            required: true
+        },
+        anoFim: {
+            type: Number,
             required: true
         },
     },

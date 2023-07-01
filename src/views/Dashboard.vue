@@ -19,7 +19,9 @@ export default {
             person: {},
             errorMessage: null,
             pageSize: 6,
-            currentPage: 1
+            currentPage: 1,
+            token: "",
+            permissoes: [],
         }
     },
     computed: {
@@ -51,6 +53,15 @@ export default {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
             }
+        }
+    },
+    mounted() {
+    
+        this.token = window.localStorage.getItem('token')
+        this.permissoes = window.localStorage.getItem('permissoes')
+        
+        if(!this.token){
+        this.$router.push('/login')
         }
     }
 }

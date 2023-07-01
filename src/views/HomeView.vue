@@ -1,8 +1,8 @@
 <template>
-  <NavBar :tipo="userType" isHomePage />
-  <HomeAdmin v-if="userType == 'Administrador'"/>
-  <HomeEscuderia :name="name" :vitorias="vitorias" :qtdPilotos="qtdPilotos" :anoInicio="anoInicio" :anoFim="anoFim" v-if="userType == 'Escuderia'"/>
-  <HomePiloto :name="name" :escuderia="escuderia" :vitorias="vitorias" :anoInicio="anoInicio" :anoFim="anoFim" v-if="userType == 'Piloto'"/>
+  <NavBar :tipo="permissoes" isHomePage />
+  <HomeAdmin v-if="permissoes == 'Administrador'"/>
+  <HomeEscuderia :name="name" :vitorias="vitorias" :qtdPilotos="qtdPilotos" :anoInicio="anoInicio" :anoFim="anoFim" v-if="permissoes == 'Escuderia'"/>
+  <HomePiloto :name="name" :escuderia="escuderia" :vitorias="vitorias" :anoInicio="anoInicio" :anoFim="anoFim" v-if="permissoes == 'Piloto'"/>
 </template>
 
 <script>
@@ -15,14 +15,28 @@ export default {
   components: {NavBar, HomeAdmin, HomeEscuderia, HomePiloto},
   data(){
     return {
-      userType: "Piloto",
-      name: "Airton Senna",
-      escuderia: "Ferrari",
+      token: "",
+      permissoes: [],
+      name: "Ferrari",
+      escuderia: "",
       vitorias: 34,
       qtdPilotos: 54,
       anoInicio: 1981,
       anoFim: 2022
+
     }
+  },
+  mounted() {
+    
+    this.token = window.localStorage.getItem('token')
+    this.permissoes = window.localStorage.getItem('permissoes')
+    
+    if(!this.token){
+      this.$router.push('/login')
+    }
+
+    
   }
+
 }
 </script>

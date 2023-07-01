@@ -1,7 +1,5 @@
 <template>
-    <div class="nav-bar">
-      <NavBar titulo="Formula 1 Data Tool"/>
-    </div>
+    <NavBar titulo="Sistema da Fórmula 1" isLoginPage/>
     <section class="gradient-custom">
         <div class="container align-items-center">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -51,17 +49,20 @@ export default {
                 const response = await ElementService.authenticate(this.input);
                 const token = response.data.token
                 const permissoes = response.data.permissoes
-                localStorage.setItem('token', token);
-                localStorage.setItem('permissoes', permissoes);
+                if(token){
+                  localStorage.setItem('token', token);
+                  localStorage.setItem('permissoes', permissoes);
+                  this.$router.push('/')
+                }
               }
               catch(e){
+                alert("Login ou senha invalidos, por favor tente novamente!")
                 console.log(e)
                 console.log("Erro no login")
-                
               }
             }
             else {
-                alert("A username and password must be present");
+                alert("Um login e senha devem estar presentes!");
             }
         }
     },
