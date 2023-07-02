@@ -15,7 +15,6 @@ export default ({
 <style scoped>
 
 .content {
-  margin-top: 100px; /* Ajuste esse valor de acordo com a altura da navbar */
-  /* Outras estilizações do conteúdo */
+  margin-top: 100px;
 }
 </style>

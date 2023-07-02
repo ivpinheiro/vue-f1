@@ -22,13 +22,13 @@
                     </ul>
                 </div>
                 <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
-                    <router-link :to="`/elements/view/${element.id}`" class="btn btn-warning my-1">
+                    <router-link v-if="viewRole" :to="`/elements/view/${element.id}`" class="btn btn-warning my-1">
                         <i class="fa fa-eye"></i>
                     </router-link>
-                    <router-link :to="`/elements/edit/${element.id}`" class="btn btn-primary my-1">
+                    <router-link v-if="updateRole" :to="`/elements/edit/${element.id}`" class="btn btn-primary my-1">
                         <i class="fa fa-pen"></i>
                     </router-link>
-                    <button class="btn btn-danger my-1" @click="clickDeleteElement(element.id)">
+                    <button v-if="deleteRole" class="btn btn-danger my-1" @click="clickDeleteElement(element.id)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>
@@ -43,6 +43,18 @@ export default {
     props: {
         element: {
             type: Object,
+            required: true
+        },
+        viewRole: {
+            type: Boolean,
+            required: true
+        },
+        updateRole: {
+            type: Boolean,
+            required: true
+        },
+        deleteRole: {
+            type: Boolean,
             required: true
         }
     },
