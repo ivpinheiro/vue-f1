@@ -7,7 +7,7 @@ import ViewElement from '../views/ViewElement.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import LoginPage from '../views/LoginPage.vue'
 import AboutView from '../views/AboutView.vue'
-import Dashboard from '../views/Dashboard.vue'
+import DashboardPage from '../views/DashboardPage.vue'
 
 const routes = [
   {
@@ -52,8 +52,8 @@ const routes = [
   },
   {
     path: '/dash',
-    name: 'Dashboard',
-    component: Dashboard
+    name: 'DashboardPage',
+    component: DashboardPage
   }            
 ]
 
