@@ -1,6 +1,6 @@
 <template>
-    <div class=" btn btn-success btn-sm">
-        <i class="fa fa-plus-circle" data-toggle="modal" data-target="#exampleModal" @click="openCloseFun()">
+    <div class=" btn btn-success btn-sm"  @click="openCloseFun()">
+        <i class="fa fa-plus-circle" data-toggle="modal" data-target="#exampleModal">
             {{btnTitle}}
         </i>
     </div>
