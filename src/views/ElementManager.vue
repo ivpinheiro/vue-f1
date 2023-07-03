@@ -59,7 +59,7 @@
         <div class="container mt-3" v-if="pagedElements.length > 0">
             <div class="row">
                 <div class="col-md-6" v-for="element in pagedElements" :key="element.id">
-                    <CardView :element="element"></CardView>
+                    <CardView :element="element" :view-role="viewRole" :update-role="updateRole" :delete-role="deleteRole"></CardView>
                 </div>
             </div>
         </div>
@@ -85,7 +85,10 @@ export default {
             person: {},
             errorMessage: null,
             pageSize: 6,
-            currentPage: 1
+            currentPage: 1,
+            viewRole: true,
+            updateRole: true,
+            deleteRole: false
         }
     },
     computed: {
