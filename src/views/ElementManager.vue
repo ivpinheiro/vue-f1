@@ -5,11 +5,9 @@
         <div class="row">
             <div class="col">
                 <p class="h3 text-success fw-bold">Element Manager
-                    <router-link to="/elements/add" class="btn btn-success btn-sm">
-                        <i class="fa fa-plus-circle">
-                            New
-                        </i>
-                    </router-link>
+                    <ModalElement btn-title=" Add Element" :btn-opt="false" modal-title="Add Pilot" :visible="false" variant="success">
+                        <AddElement />
+                    </ModalElement>             
                 </p>
                 <p class="fst-italic">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eaque saepe libero, porro alias dolore
@@ -59,7 +57,8 @@
         <div class="container mt-3" v-if="pagedElements.length > 0">
             <div class="row">
                 <div class="col-md-6" v-for="element in pagedElements" :key="element.id">
-                    <CardView :element="element" :view-role="viewRole" :update-role="updateRole" :delete-role="deleteRole"></CardView>
+                    <CardView :element="element" :view-role="viewRole" :update-role="updateRole" :delete-role="deleteRole">
+                    </CardView>
                 </div>
             </div>
         </div>
@@ -74,10 +73,12 @@ import CardView from '../components/CardView.vue';
 import PaginationTable from '../components/PaginationTable.vue';
 import SpinnerLoader from '../components/SpinnerLoader.vue'
 import NavBar from '../components/NavBar.vue'
+import ModalElement from '../components/ModalElement.vue'
+import AddElement from '../components/AddElement.vue'
 
 export default {
     name: 'ElementManager',
-    components: { SpinnerLoader, CardView, PaginationTable, NavBar },
+    components: { SpinnerLoader, CardView, PaginationTable, NavBar, ModalElement, AddElement },
     data: function () {
         return {
             loading: false,
@@ -86,9 +87,10 @@ export default {
             errorMessage: null,
             pageSize: 6,
             currentPage: 1,
+            showComponent: true,
             viewRole: true,
             updateRole: true,
-            deleteRole: false
+            deleteRole: true
         }
     },
     computed: {
@@ -120,6 +122,9 @@ export default {
             if (page >= 1 && page <= this.totalPages) {
                 this.currentPage = page;
             }
+        },
+        toggleComponent() {
+            this.showComponent = !this.showComponent;
         }
     }
 }

@@ -13,11 +13,11 @@
                     <p class="text-dark-50 mb-3">Por favor, insira suas credenciais corretamente para ter acesso ao sistema!</p>
       
                     <div class="form-outline form-dark mb-4">
-                      <input v-model="input.username" type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Login" @keypress="handleKeyPress"/>
+                      <input v-model="input.username" type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Login" @keypress="handleKeyPress" required/>
                     </div>
       
                     <div class="form-outline form-dark mb-4">
-                      <input v-model="input.password" type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Senha" @keypress="handleKeyPress"/>
+                      <input v-model="input.password" type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Senha" @keypress="handleKeyPress" required/>
                     </div>      
                     <button class="btn btn-lg px-5 btn btn-success" type="submit" @click="login()">Login</button>      
                   </div>

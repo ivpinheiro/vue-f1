@@ -2,16 +2,16 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <p class="h3 text-success fw-bold">Add Element</p>
-                <p class="fst-italic">
+                <p class="h1 text-success fw-bold small">Add Element</p>
+                <p class="fst-italic" style="font-size: 15px;">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto sit amet laborum expedita libero sunt aspernatur animi eveniet! Nesciunt expedita eius consectetur inventore facilis pariatur consequuntur doloribus odit illo dolorem!
                 </p>
             </div>
         </div>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <form @submit.prevent="submitCreate()">
                     <div class="mb-2">
                         <input v-model="element.name" type="text" class="form-control" placeholder="Name" required>
