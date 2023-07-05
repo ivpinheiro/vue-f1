@@ -1,6 +1,6 @@
 <template>
-    <div class=" btn btn-success btn-sm"  @click="openCloseFun()">
-        <i class="fa fa-plus-circle" data-toggle="modal" data-target="#exampleModal">
+    <div :class="btnClassExternal"  @click="openCloseFun()">
+        <i :class="btnClassInternal" data-toggle="modal" data-target="#exampleModal">
             {{btnTitle}}
         </i>
     </div>
@@ -58,7 +58,16 @@ export default {
         variant: {
             type: String,
             required: true
-        }
+        },
+        btnClassExternal: {
+            type: String,
+            required: true
+        },
+        btnClassInternal: {
+            type: String,
+            required: true
+        },
+
     },
     data() {
         return {

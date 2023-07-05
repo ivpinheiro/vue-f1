@@ -35,21 +35,20 @@
     </div>
 
     <div class="container" v-if="!loading && isDone()">
-        <div class="row align-items-center">
-            <div class="col-md-4">
-                <img src="../assets/img/person.png" class="contact-img-big" alt="person image">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-6 align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <img src="../assets/img/person.png" class="contact-img" alt="person image">
+                </div>
             </div>
-            <div class="col-md-6">
-                <ul class="list-group">
-                    <li class="list-group-item">Name: <span class="fw-bold">{{element.name}}</span> </li>
-                    <li class="list-group-item">ID: <span class="fw-bold">{{element.id}}</span></li>
-                    <li class="list-group-item">Country: <span class="fw-bold">{{element.country}}</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <router-link to="/" class="btn btn-success"><i class="fa fa-arrow-alt-circle-left"></i> Back</router-link>
+            <div class="col-md-6" style="padding:0px;">
+                <div class="align-items-center justify-content-center h-100">
+                    <ul class="list-group">
+                        <li class="list-group-item">Name: <span class="fw-bold">{{ element.name }}</span> </li>
+                        <li class="list-group-item">ID: <span class="fw-bold">{{ element.id }}</span></li>
+                        <li class="list-group-item">Country: <span class="fw-bold">{{ element.country }}</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -61,9 +60,14 @@ import { ElementService } from '../services/ElementService.js'
 export default {
     name: 'ViewElement',
     components: { SpinnerLoader },
+    props: {
+        elementId: {
+            type: Object,
+            required: true
+        }
+    },
     data: function () {
         return {
-            elementId: this.$route.params.elementId,
             loading: false,
             element: {},
             group: {},

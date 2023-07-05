@@ -36,30 +36,34 @@
 
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-4">
-                <form @submit.prevent="updateSubmit()">
-                    <div class="mb-2">
-                        <input v-model="element.name" type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="mb-2">
-                        <input v-model="element.id" type="text" class="form-control" placeholder="ID">
-                    </div>
-                    <div class="mb-2">
-                        <input v-model="element.country" type="text" class="form-control" placeholder="Country">
-                    </div>
-                    <div class="mb-2">
-                        <input v-model="element.groupId" type="text" class="form-control" placeholder="GroupId">
-                    </div>
-                    <div class="mb-2">
-                        <input type="submit" class="btn btn-success" value="Update">
-                    </div>
-                </form>
+            <div class="col-md-6" style="padding:0px;">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <form @submit.prevent="updateSubmit()">
+                        <div class="mb-2">
+                            <input v-model="element.name" type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="mb-2">
+                            <input v-model="element.id" type="text" class="form-control" placeholder="ID">
+                        </div>
+                        <div class="mb-2">
+                            <input v-model="element.country" type="text" class="form-control" placeholder="Country">
+                        </div>
+                        <div class="mb-2">
+                            <input v-model="element.groupId" type="text" class="form-control" placeholder="GroupId">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="../assets/img/person.png" class="contact-img" alt="person image">
+            <div class="col-md-6 align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <img src="../assets/img/person.png" class="contact-img" alt="person image">
+                </div>
             </div>
         </div>
-    </div>
+        <div class="mb-2">
+            <input type="submit" class="btn btn-success" value="Update">
+        </div>
+    </div> 
 </template>
 
 <script>
@@ -68,9 +72,14 @@ import SpinnerLoader from '../components/SpinnerLoader.vue'
 export default {
     name: 'EditElement',
     components: { SpinnerLoader },
+    props: {
+        elementId: {
+            type: Object,
+            required: true
+        }
+    },
     data: function () {
-        return {
-            elementId: this.$route.params.elementId,
+        return {            
             loading: false,
             element: {
                 name: '',

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col">
                 <p class="h3 text-success fw-bold">Element Manager
-                    <ModalElement btn-title=" Add Element" :btn-opt="false" modal-title="Add Pilot" :visible="false" variant="success">
+                    <ModalElement btn-title=" Add Element" :btn-opt="false" modal-title="Add Pilot" :visible="false" variant="success" btn-class-external="btn btn-success btn-sm" btn-class-internal="fa fa-plus-circle">
                         <AddElement />
                     </ModalElement>             
                 </p>
@@ -74,7 +74,7 @@ import PaginationTable from '../components/PaginationTable.vue';
 import SpinnerLoader from '../components/SpinnerLoader.vue'
 import NavBar from '../components/NavBar.vue'
 import ModalElement from '../components/ModalElement.vue'
-import AddElement from '../components/AddElement.vue'
+import AddElement from './AddElement.vue'
 
 export default {
     name: 'ElementManager',

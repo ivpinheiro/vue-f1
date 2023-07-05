@@ -48,12 +48,6 @@
     },
     {
       "name": "Plot",
-      "id": 137,
-      "country": "KR",
-      "groupId": 1
-    },
-    {
-      "name": "Plot",
       "id": 1247,
       "country": "KR",
       "groupId": 1
@@ -79,12 +73,6 @@
     {
       "name": "Plot",
       "id": 12324,
-      "country": "KR",
-      "groupId": 1
-    },
-    {
-      "name": "Plot",
-      "id": 231,
       "country": "KR",
       "groupId": 1
     },
@@ -145,12 +133,6 @@
     {
       "name": "Plot",
       "id": 12324,
-      "country": "KR",
-      "groupId": 1
-    },
-    {
-      "name": "Plot",
-      "id": 231,
       "country": "KR",
       "groupId": 1
     },
@@ -221,10 +203,10 @@
       "groupId": 1
     },
     {
-      "name": "Ivan",
-      "id": "1575",
-      "country": "BR",
-      "groupId": "123"
+      "name": "Gustavo Alneu",
+      "id": "171",
+      "country": "SP",
+      "groupId": "1"
     }
   ],
   "groups": [
