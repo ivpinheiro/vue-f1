@@ -39,3 +39,8 @@ body {
     border: 0 0 0 0px;
     width: 100px;
 }
+
+.modal-open .modal-backdrop {
+    filter: blur(4px); /* Ajuste o valor de desfoque conforme necessário */
+  }
+  
