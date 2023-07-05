@@ -1,32 +1,27 @@
 <template>
     <div class="element-manager">
-        <NavBar :titulo="person.name" :tipo="person.type" isHomePage />
-
         <div class="container mt-3">
             <div class="row">
                 <div class="col">
-                    <p class="h3 text-success fw-bold">Element Manager
+                    <p class="h3 text-success fw-bold">Gerenciador
                         <span class="btn">
-                            <ModalElement btn-title=" Add Element" :btn-opt="false" modal-title="Add Pilot" :visible="false"
+                            <ModalElement btn-title=" Adicionar Elemento" :btn-opt="false" modal-title="Adicionar" :visible="false"
                                 variant="success" btn-class-external="btn btn-success btn-sm"
-                                btn-class-internal="fa fa-plus-circle">
-                                <AddElement />
+                                btn-class-internal="fa fa-plus-circle" title="Adicionar">
+                                <AddElement :end-point="endPoint" :addDriver="addDriver" :addConstructor="addConstructor"/>
                             </ModalElement>
                         </span>
-                        <span class="btn">
-                            <ModalElement btn-title=" Query Element" :btn-opt="true" modal-title="Query" :visible="false"
+                        <!-- <span class="btn">
+                            <ModalElement btn-title=" Consulta" :btn-opt="true" modal-title="Query" :visible="false"
                                 variant="success" btn-class-external="btn btn-success btn-sm"
                                 btn-class-internal="fa fa-plus-circle" btn-opt-title="Run Query" @btnClicked="resolveEvent">                                
                             </ModalElement>
-                        </span>
+                        </span> -->
                     </p>
                     <p class="fst-italic">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus eaque saepe libero, porro alias
-                        dolore
-                        maxime, ea sit voluptas vitae consequuntur suscipit corrupti aliquam natus nisi ad. Aperiam, quae
-                        ab?
+                        Bem-vindo ao painel de gerenciamento de elementos de base de dados, o local perfeito para controlar e administrar todos os dados importantes.
                     </p>
-                    <form>
+                    <!-- <form>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
@@ -39,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>
@@ -71,7 +66,7 @@
                 <div class="row">
                     <div class="col-md-6" v-for="element in pagedElements" :key="element.id">
                         <CardView :element="element" :view-role="viewRole" :update-role="updateRole"
-                            :delete-role="deleteRole">
+                            :delete-role="deleteRole" :viewDriver="viewDriver" :viewConstructor="viewConstructor">
                         </CardView>
                     </div>
                 </div>
@@ -84,17 +79,16 @@
 </template>
 
 <script>
-import { ElementService } from '../services/ElementService.js'
+// import { ElementService } from '../services/ElementService.js'
 import CardView from './CardView.vue';
 import PaginationTable from './PaginationTable.vue';
 import SpinnerLoader from './SpinnerLoader.vue'
-import NavBar from './NavBar.vue'
 import ModalElement from './ModalElement.vue'
 import AddElement from './AddElement.vue'
 
 export default {
     name: 'ElementManager',
-    components: { SpinnerLoader, CardView, PaginationTable, NavBar, ModalElement, AddElement },
+    components: { SpinnerLoader, CardView, PaginationTable, ModalElement, AddElement },
     props: {
         viewRole: {
             type: Boolean,
@@ -107,13 +101,45 @@ export default {
         deleteRole: {
             type: Boolean,
             required: true
+        },
+        responseDataElements: {
+            type: Object,
+            required: true
+        },
+        responseDataPerson: {
+            type: Object,
+            required: true
+        },
+        loading: {
+            type: Boolean,
+            required: true
+        },
+        addDriver: {
+            type: Boolean,
+            required: true
+        },
+        addConstructor: {
+            type: Boolean,
+            required: true
+        },
+        endPoint: {
+            type: String,
+            required: true
+        },
+        viewDriver: {
+            type: Boolean,
+            required: true
+        },
+        viewConstructor: {
+            type: Boolean,
+            required: true
         }
     },
     data: function () {
         return {
-            loading: false,
-            elements: [],
-            person: {},
+            // loading: false,
+            // elements: [],
+            // person: {},
             errorMessage: null,
             pageSize: 6,
             currentPage: 1,
@@ -122,28 +148,28 @@ export default {
     },
     computed: {
         totalPages() {
-            return Math.ceil(this.elements.length / this.pageSize);
+            return Math.ceil(this.responseDataElements.length / this.pageSize);
         },
         pagedElements() {
             const startIndex = (this.currentPage - 1) * this.pageSize;
             const endIndex = startIndex + this.pageSize;
-            return this.elements.slice(startIndex, endIndex);
+            return this.responseDataElements.slice(startIndex, endIndex);
         }
     },
-    created: async function () {
-        try {
-            this.loading = true;
-            let response = await ElementService.getAllElements();
-            this.elements = response.data;
-            let nresponse = await ElementService.getPerson();
-            this.person = nresponse.data;
+    // created: async function () {
+    //     try {
+    //         this.loading = true;
+    //         let response = await ElementService.getAllElements();
+    //         this.elements = response.data;
+    //         let nresponse = await ElementService.getPerson();
+    //         this.person = nresponse.data;
 
-            this.loading = false;
-        } catch (error) {
-            this.errorMessage = error;
-            this.loading = false;
-        }
-    },
+    //         this.loading = false;
+    //     } catch (error) {
+    //         this.errorMessage = error;
+    //         this.loading = false;
+    //     }
+    // },
     methods: {
         changePage(page) {
             if (page >= 1 && page <= this.totalPages) {

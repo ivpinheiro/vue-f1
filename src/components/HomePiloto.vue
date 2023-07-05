@@ -1,7 +1,5 @@
 <template>
     <div class="homepage">
-        <h2 class="titulo">{{ name }}</h2>
-        <h2 class="titulo">Escuderia: {{ escuderia }}</h2>
         <div class="gridOverview">
             <div class="box">
                 <h3>Vitórias</h3>
@@ -28,10 +26,6 @@ export default {
     name: "HomeEscuderia",
     props: {
         name: {
-            type: String,
-            required: true
-        },
-        escuderia: {
             type: String,
             required: true
         },

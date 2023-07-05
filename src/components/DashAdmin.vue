@@ -2,8 +2,8 @@
     <div class="dashboard">
         <h2 class="homeAdminGerenciarLabel ajusteMargin">Selecione o relatório</h2>
         <div class="gridHome">
-            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio1()">Exibir quantidade de resultados por status</button>
-            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio2()">Aeroportos próximos no território brasileiro</button>
+            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio1()" :class="{ 'selecionado': relatorio1}">Exibir quantidade de resultados por status</button>
+            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio2()" :class="{ 'selecionado': relatorio2}">Aeroportos próximos no território brasileiro</button>
         </div>
         <div class="relatorio" v-if="relatorio1">
             <h3 class="relatorio1Desc">Esse relatório indica a quantidade de resultados por cada status, apresentando o
@@ -68,10 +68,10 @@ nome do status e sua contagem.</h3>
 </template>
 
 <script>
-
+    import { ElementService } from '../services/ElementService.js'
     export default {
         name: 'DashAdmin',
-        components: { },
+        components: {  },
         data(){
             return {
                 relatorio1: false,
@@ -83,73 +83,31 @@ nome do status e sua contagem.</h3>
             }
         },
         methods:{
-            mudarParaORelatorio1(){
+            async mudarParaORelatorio1(){
                 this.relatorio1 = true
                 this.relatorio2 = false
-                this.selecionado = 1
                 this.cidades = []
-                this.statusList = [
-                    { "status": "Finished", "quantity": 7123 },
-                    { "status": "+1 Lap", "quantity": 3856 },
-                    { "status": "Engine", "quantity": 2014 },
-                    { "status": "+2 Laps", "quantity": 1594 },
-                    { "status": "Accident", "quantity": 1046 },
-                    { "status": "Did not qualify", "quantity": 1025 },
-                    { "status": "Collision", "quantity": 838 },
-                    { "status": "Gearbox", "quantity": 805 },
-                    { "status": "Spun off", "quantity": 792 },
-                    { "status": "+3 Laps", "quantity": 731 },
-                    { "status": "Suspension", "quantity": 431 },
-                    { "status": "+4 Laps", "quantity": 405 },
-                    { "status": "Did not prequalify", "quantity": 331 },
-                    { "status": "Transmission", "quantity": 321 },
-                    { "status": "Electrical", "quantity": 316 },
-                    { "status": "Brakes", "quantity": 251 },
-                    { "status": "Withdrew", "quantity": 244 },
-                    { "status": "+5 Laps", "quantity": 221 },
-                    { "status": "Clutch", "quantity": 214 },
-                    { "status": "Not classified", "quantity": 172 },
-                    { "status": "Fuel system", "quantity": 155 },
-                    { "status": "+6 Laps", "quantity": 153 },
-                    { "status": "Turbo", "quantity": 146 },
-                    { "status": "Disqualified", "quantity": 143 },
-                    { "status": "Hydraulics", "quantity": 138 },
-                    { "status": "Overheating", "quantity": 130 },
-                    { "status": "Ignition", "quantity": 128 },
-                    { "status": "Oil leak", "quantity": 123 },
-                    { "status": "Throttle", "quantity": 111 },
-                    { "status": "Out of fuel", "quantity": 100 },
-                    { "status": "+7 Laps", "quantity": 99 },
-                    { "status": "Halfshaft", "quantity": 99 },
-                    { "status": "Retired", "quantity": 95 },
-                    { "status": "Wheel", "quantity": 88 },
-                    { "status": "Oil pressure", "quantity": 87 },
-                    { "status": "Fuel pump", "quantity": 66 },
-                    { "status": "Differential", "quantity": 61 },
-                    { "status": "Tyre", "quantity": 55 },
-                    { "status": "Handling", "quantity": 54 },
-                    { "status": "+8 Laps", "quantity": 52 },
-                    { "status": "Fuel leak", "quantity": 50 },
-                    { "status": "Steering", "quantity": 47 },
-                    { "status": "Collision damage", "quantity": 45 },
-                    { "status": "Radiator", "quantity": 42 },
-                    { "status": "Puncture", "quantity": 41 },
-                    { "status": "Power Unit", "quantity": 41 },
-                    { "status": "+9 Laps", "quantity": 38 },
-                    { "status": "Wheel bearing", "quantity": 37 },
-                    { "status": "Injection", "quantity": 36 },
-                    { "status": "Fuel pressure", "quantity": 35 },
-                    { "status": "Water leak", "quantity": 32 },
-                    { "status": "+10 Laps", "quantity": 32 },
-                    { "status": "Alternator", "quantity": 31 }
-                ]
+
+                try {
+                    const token = window.localStorage.getItem('token')
+                    const response = await ElementService.getRelatorio1(token);
+                    alert("SSSSSS")
+                    this.statusList = response
+                    this.mudarOrdenador(1)
+                
+                }
+                    catch (e) {
+                    console.log(e)
+                    console.log("Erro no login")
+                }
+
+                
             },
             mudarParaORelatorio2(){
                 this.relatorio1 = false
                 this.relatorio2 = true
                 this.cidades = []
                 this.statusList = []
-                this.selecionado = 3
             },
             mudarOrdenador(number){
                 this.selecionado = number
@@ -191,122 +149,21 @@ nome do status e sua contagem.</h3>
 
                 }
             },
-            buscar(){
-                this.cidades = 
-                [
-                   {
-                       "nome": "Palmas",
-                       "lat": -123122,
-                       "long": -312533,
-                       aeroportosProximos:[
-                           {
-                               "codigo_IATA": "MCZ",
-                               "aeroporto": "Zumbi dos Palmares Airport",
-                               "cidade_aeroporto": "Maceió",
-                               "distancia_em_km": 18.334337459440547,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "",
-                               "aeroporto": "Campo Délio Jardim de Mattos Airport",
-                               "cidade_aeroporto": "Rio de Janeiro",
-                               "distancia_em_km": 21.054782453529477,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "GRU",
-                               "aeroporto": "Guarulhos - Governador André Franco Montoro International Airport",
-                               "cidade_aeroporto": "São Paulo",
-                               "distancia_em_km": 21.46692425762662,
-                               "tipo_aeroporto": "large_airport"
-                           },
-                           {
-                               "codigo_IATA": "SSA",
-                               "aeroporto": "Deputado Luiz Eduardo Magalhães International Airport",
-                               "cidade_aeroporto": "Salvador",
-                               "distancia_em_km": 21.58471036151831,
-                               "tipo_aeroporto": "large_airport"
-                           },
-                           {
-                               "codigo_IATA": "CNF",
-                               "aeroporto": "Tancredo Neves International Airport",
-                               "cidade_aeroporto": "Belo Horizonte",
-                               "distancia_em_km": 31.88609470224482,
-                               "tipo_aeroporto": "large_airport"
-                           },
-                           {
-                               "codigo_IATA": "IZA",
-                               "aeroporto": "Presidente Itamar Franco Airport",
-                               "cidade_aeroporto": "Juiz de Fora",
-                               "distancia_em_km": 33.42876683533632,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "SNZ",
-                               "aeroporto": "Santa Cruz Air Force Base",
-                               "cidade_aeroporto": "Rio de Janeiro",
-                               "distancia_em_km": 55.122191487156186,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "TMT",
-                               "aeroporto": "Trombetas Airport",
-                               "cidade_aeroporto": "Oriximiná",
-                               "distancia_em_km": 66.56520341281421,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "MEU",
-                               "aeroporto": "Monte Dourado - Serra do Areão Airport",
-                               "cidade_aeroporto": "Almeirim",
-                               "distancia_em_km": 70.5572440938035,
-                               "tipo_aeroporto": "medium_airport"
-                           }
-                        ]
-                    }, 
-                    {
-                       "nome": "Palmas",
-                       "lat": -123122,
-                       "long": -312533,
-                       aeroportosProximos:[
-                           {
-                               "codigo_IATA": "CWB",
-                               "aeroporto": "Afonso Pena Airport",
-                               "cidade_aeroporto": "Curitiba",
-                               "distancia_em_km": 14.874290457270122,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "RBR",
-                               "aeroporto": "Rio Branco-Plácido de Castro International Airport",
-                               "cidade_aeroporto": "Rio Branco",
-                               "distancia_em_km": 14.94098487967697,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "ROO",
-                               "aeroporto": "Maestro Marinho Franco Airport",
-                               "cidade_aeroporto": "Rondonópolis",
-                               "distancia_em_km": 15.970973936232529,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "JTC",
-                               "aeroporto": "Bauru/Arealva–Moussa Nakhal Tobias State Airport",
-                               "cidade_aeroporto": "Bauru",
-                               "distancia_em_km": 17.168897982419114,
-                               "tipo_aeroporto": "medium_airport"
-                           },
-                           {
-                               "codigo_IATA": "NAT",
-                               "aeroporto": "São Gonçalo do Amarante - Governador Aluízio Alves International Airport",
-                               "cidade_aeroporto": "Natal",
-                               "distancia_em_km": 17.62816730753729,
-                               "tipo_aeroporto": "medium_airport"
-                           }
-                        ]
-                    }, 
-                ]
+            async buscar(){
+                try {
+                    const token = window.localStorage.getItem('token')
+                    const response = await ElementService.getRelatorio2(token, this.busca);
+                    this.cidades = response.data
+                    console.log(this.cidades)
+                    this.mudarOrdenador(1)
+                
+                }
+                    catch (e) {
+                    console.log(e)
+                    console.log("Erro no login")
+                }
+                
+                this.mudarOrdenador(3)
             },
             handleKeyPress(event) {
                 if (event.key === 'Enter') {
@@ -382,8 +239,8 @@ nome do status e sua contagem.</h3>
         align-items: center;
         margin-bottom: 10px;
         border-radius: 10px;
-        border: 5px solid #198754;
-        padding: 5px;
+        box-shadow: inset 0 0 0 5px #198754;
+        padding: 10px;
         cursor: pointer;
 
     }
@@ -392,8 +249,9 @@ nome do status e sua contagem.</h3>
         background-color: #198754;
         color: #FFF;
         transition: 0.2s;
+        box-shadow: inset 0 0 0 5px #157347; 
+
     }
-    /* Estilos para a lista de status */
     .statusList {
         display: flex;
         flex-direction: column;

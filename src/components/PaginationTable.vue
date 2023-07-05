@@ -3,10 +3,10 @@
         <nav v-if="totalPages > 1">
             <ul class="pagination justify-content-center pagination-lg">
                 <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-                    <a class="page-link custom-link" href="#" @click="changePage(1)">First</a>
+                    <a class="page-link custom-link" href="#" @click="changePage(1)">Primeiro</a>
                 </li>
                 <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-                    <a class="page-link custom-link" href="#" @click="changePage(currentPage - 1)">Previous</a>
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage - 1)">Anterior</a>
                 </li>
                 <li class="page-item" v-if="currentPage > 2" :key="currentPage-2">
                     <a class="page-link custom-link" href="#" @click="changePage(currentPage-2)">{{ currentPage - 2 }}</a>
@@ -29,10 +29,10 @@
                     </li>
                 -->
                 <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
-                    <a class="page-link custom-link" href="#" @click="changePage(currentPage + 1)">Next</a>
+                    <a class="page-link custom-link" href="#" @click="changePage(currentPage + 1)">Próximo</a>
                 </li>
                 <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
-                    <a class="page-link custom-link" href="#" @click="changePage(totalPages)">Last</a>
+                    <a class="page-link custom-link" href="#" @click="changePage(totalPages)">Último</a>
                 </li>
             </ul>
         </nav>

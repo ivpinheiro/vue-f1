@@ -24,7 +24,7 @@
                     <div class="modal-footer">
                         <button v-if="btnOpt" type="button" class="btn btn-primary" @click="emitEvent">{{ btnOptTitle }}</button>
                         <button type="button" :class="'btn btn-' + variant" data-dismiss="modal"
-                            @click="openCloseFun()">Close</button>
+                            @click="openCloseFun()">Fechar</button>
                     </div>
                 </div>
             </div>

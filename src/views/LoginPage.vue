@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar titulo="Sistema da Fórmula 1" isLoginPage />
+    <NavBar isLoginPage />
     <section class="gradient-custom">
       <div class="container align-items-center">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -54,9 +54,11 @@ export default {
           const response = await ElementService.authenticate(this.input);
           const token = response.data.token
           const permissoes = response.data.permissoes
+          const usuarioLogado = response.data.usuarioLogado
           if (token) {
             localStorage.setItem('token', token);
             localStorage.setItem('permissoes', permissoes);
+            localStorage.setItem('usuarioLogado', usuarioLogado);
             this.$router.push('/')
           }
         }

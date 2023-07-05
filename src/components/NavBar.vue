@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed-top navbar navbar-expand-lg navbar-dark navGrad">
+    <nav class="navbar navbar-expand-lg navbar-dark navFixada">
         <div class="container">
             <div class="iten">
                 <div class="my-2 my-lg-0" v-if="isDashPage">
@@ -17,16 +17,16 @@
             </div>
             <div class="usuario iten iten2">
                 <div v-if="roleType == 'Administrador'">
-                    <img src="../assets/img/Administrador.png" class="navbar-brand admin" alt="F1 Car" />
+                    <img src="../assets/img/Administrador.png" class="navbar-brand admin" alt="Engrenagens" />
                 </div>
                 <div v-else-if="roleType == 'Escuderia'">
-                    <img src="../assets/img/Escuderia.png" class="navbar-brand" alt="F1 Car" />
+                    <img src="../assets/img/Escuderia.png" class="navbar-brand" alt="Bandeiras de F1" />
                 </div>
                 <div v-else-if="roleType == 'Piloto'">
-                    <img src="../assets/img/Piloto.png" class="navbar-brand" alt="F1 Car" />
+                    <img src="../assets/img/Piloto.png" class="navbar-brand" alt="Carro de F1" />
                 </div>
                 <div v-else>
-                    <img src="../assets/img/Piloto.png" class="navbar-brand" alt="F1 Car" />
+                    <img src="../assets/img/Piloto.png" class="navbar-brand" alt="Carro de F1" />
                 </div>
                 <div v-if="roleType" class="collapse navbar-collapse navbar-brand titulo">
                     {{roleType}}
@@ -81,7 +81,8 @@ export default {
     methods:{
         logout() {
             localStorage.setItem('token', "");
-            localStorage.setItem('permissoes', []);
+            localStorage.setItem('permissoes', "");
+            localStorage.setItem('usuarioLogado', "");
             this.$router.push('/login')
         }
     }
@@ -128,5 +129,12 @@ export default {
  .iten3{
     justify-content: end;
     gap: 20px;
+ }
+
+ .navFixada{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
  }
 </style>

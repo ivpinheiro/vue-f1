@@ -1,6 +1,5 @@
 <template>
     <div class="homepage">
-        <h2 class="titulo ajusteMargin">{{ name }}</h2>
         <div class="gridOverview">
             <div class="box">
                 <h3>Vitórias</h3>
@@ -23,15 +22,17 @@
         <div>
             <router-link class="btn btn-lg px-5 btn btn-success" to="/dash">Exibir relatórios</router-link>
         </div>
-        <ElementManager :view-role="true" :update-role="true" :delete-role="true" />
+        <ElementManager :view-role="true" :update-role="true" :delete-role="true" :responseDataElements="elements" :responseDataPerson="person" :loading="loading" :end-point="endPoint" :addDriver="false" :addConstructor="showManagerEscuderia"/>
     </div>
 </template>
 
 <script>
 import ElementManager from '@/components/ElementManager.vue';
+import { ElementService } from '../services/ElementService.js';
 
 export default {
     name: "HomeEscuderia",
+    components: { ElementManager },
     props: {
         name: {
             type: String,
@@ -54,7 +55,27 @@ export default {
             required: true
         },
     },
-    components: { ElementManager }
+    data: function () {
+        return {
+            loading: false,
+            elements: [],
+            person: {},
+            endPoint: '123456'
+        }
+    },
+    created: async function () {
+        try {
+            this.loading = true;
+            let response = await ElementService.getAllElements();
+            this.elements = response.data;
+            let nresponse = await ElementService.getPerson();
+            this.person = nresponse.data;
+            this.loading = false;
+        } catch (error) {
+            this.errorMessage = error;
+            this.loading = false;
+        }
+    }    
 }
 </script>
 
@@ -77,10 +98,6 @@ export default {
 .titulo {
     margin-bottom: 20px;
     margin-top: 40px;
-}
-
-.ajusteMargin {
-    margin-top: -10px;
 }
 
 .box {

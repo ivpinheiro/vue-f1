@@ -11,7 +11,8 @@ export class ElementService {
         let dataURL = `${this.serverURL}/elements/${elementId}`;
         return axios.get(dataURL);
     }
-    static createElement(element){
+    static createElement(element, endPoint){
+        console.log(endPoint);
         let dataURL = `${this.serverURL}/elements/`;
         return axios.post(dataURL, element);
     }
@@ -40,6 +41,50 @@ export class ElementService {
                 method: 'POST', // Especifica o método HTTP como POST
                 headers: {
                 'Content-Type': 'application/json' // Define o cabeçalho Content-Type corretamente
+                },
+                timeout: 10000
+            },   
+        )
+    }
+
+    static getRelatorio146(token){
+        let dataURL = `${this.oficialBackendURL}/status/relatorio/quantidade-por-resultado`;
+         return axios.get(dataURL, 
+            {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json', // Define o cabeçalho Content-Type corretamente
+                'Authorization': token
+                },
+                timeout: 10000
+            },   
+        )
+    }
+
+    static getRelatorio2(token, busca){
+        let dataURL = `${this.oficialBackendURL}/airports/relatorios/exibir-aeroportos-proximos`;
+         return axios.get(dataURL, 
+            {
+                params: {nomeCidade:busca},
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+                },
+                timeout: 10000
+            },   
+        )
+    }
+
+    static getRelatorio3(token, busca){
+        let dataURL = `${this.oficialBackendURL}/airports/relatorios/exibir-aeroportos-proximos`;
+         return axios.get(dataURL, 
+            {
+                params: {nomeCidade:busca},
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
                 },
                 timeout: 10000
             },   
