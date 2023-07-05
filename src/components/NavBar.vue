@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed-top navbar  navbar-expand-lg navbar-dark navGrad">
+    <nav class="fixed-top navbar navbar-expand-lg navbar-dark navGrad">
         <div class="container">
             <div class="iten">
                 <div class="my-2 my-lg-0" v-if="isDashPage">
@@ -16,20 +16,20 @@
                 </div>
             </div>
             <div class="usuario iten iten2">
-                <div v-if="tipo == 'Administrador'">
+                <div v-if="roleType == 'Administrador'">
                     <img src="../assets/img/Administrador.png" class="navbar-brand admin" alt="F1 Car" />
                 </div>
-                <div v-else-if="tipo == 'Escuderia'">
+                <div v-else-if="roleType == 'Escuderia'">
                     <img src="../assets/img/Escuderia.png" class="navbar-brand" alt="F1 Car" />
                 </div>
-                <div v-else-if="tipo == 'Piloto'">
+                <div v-else-if="roleType == 'Piloto'">
                     <img src="../assets/img/Piloto.png" class="navbar-brand" alt="F1 Car" />
                 </div>
                 <div v-else>
                     <img src="../assets/img/Piloto.png" class="navbar-brand" alt="F1 Car" />
                 </div>
-                <div v-if="tipo" class="collapse navbar-collapse navbar-brand titulo">
-                    {{tipo}}
+                <div v-if="roleType" class="collapse navbar-collapse navbar-brand titulo">
+                    {{roleType}}
                 </div>
                 <div v-else class="collapse navbar-collapse navbar-brand titulo">
                     Sistema da Fórmula 1
@@ -58,7 +58,7 @@
 export default {
     name: 'NavBar',
     props: {
-        tipo: { 
+        roleType: { 
             type: String,
             required: false
         },

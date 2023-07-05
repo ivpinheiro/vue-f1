@@ -1,37 +1,36 @@
 <template>
-
     <div class="homepage">
-        <h2 class="titulo ajusteMargin">{{name}}</h2>
+        <h2 class="titulo ajusteMargin">{{ name }}</h2>
         <div class="gridOverview">
             <div class="box">
                 <h3>Vitórias</h3>
-                <span>{{vitorias}}</span>
+                <span>{{ vitorias }}</span>
             </div>
             <div class="box">
                 <h3>Pilotos</h3>
-                <span>{{qtdPilotos}}</span>
+                <span>{{ qtdPilotos }}</span>
             </div>
             <div class="box">
                 <h3>De</h3>
-                <span>{{anoInicio}}</span>
+                <span>{{ anoInicio }}</span>
             </div>
             <div class="box">
                 <h3>Até</h3>
-                <span>{{anoFim}}</span>
+                <span>{{ anoFim }}</span>
             </div>
         </div>
         <h2 class="titulo">Acessar Relatórios</h2>
         <div>
-            <router-link class="btn btn-lg px-5 btn btn-success" to="/dash" >Exibir relatórios</router-link>
+            <router-link class="btn btn-lg px-5 btn btn-success" to="/dash">Exibir relatórios</router-link>
         </div>
-        <ElementManager/>
+        <ElementManager :view-role="true" :update-role="true" :delete-role="true" />
     </div>
 </template>
 
 <script>
-    import ElementManager from '@/views/ElementManager.vue';
+import ElementManager from '@/components/ElementManager.vue';
 
-    export default {
+export default {
     name: "HomeEscuderia",
     props: {
         name: {
@@ -60,46 +59,48 @@
 </script>
 
 <style scoped>
-    .homepage{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .gridOverview{
-        display: grid;
-        gap: 25px 25px;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        margin-bottom: 40px;
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    }
-    .titulo{
-        margin-bottom: 20px;
-        margin-top: 40px;
-    }
+.gridOverview {
+    display: grid;
+    gap: 25px 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 40px;
 
-    .ajusteMargin{
-        margin-top: -10px;
-    }
+}
 
-    .box{
-        width: 100px ;
-        height: 100px;
-        border-radius: 15px;
-        border: 5px solid #198754;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .box h3{
-        text-align: center;
-        font-size: 20px;
-    }
+.titulo {
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
 
-    .box span{
-        font-size: 35px;
-        margin-top: -20px;
-    }
+.ajusteMargin {
+    margin-top: -10px;
+}
 
+.box {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    border: 5px solid #198754;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box h3 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.box span {
+    font-size: 35px;
+    margin-top: -20px;
+}
 </style>

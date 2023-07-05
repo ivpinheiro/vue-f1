@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-3 text-center"> <!-- Adicione a classe "text-center" para centralizar todo o conteúdo -->
+    <div class="container mt-3 text-center pagination-table"> <!-- Adicione a classe "text-center" para centralizar todo o conteúdo -->
         <nav v-if="totalPages > 1">
             <ul class="pagination justify-content-center pagination-lg">
                 <li class="page-item" :class="{ 'disabled': currentPage === 1 }">

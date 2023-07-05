@@ -2,7 +2,7 @@
     <div class="dashboard">
         <h2 class="homeAdminGerenciarLabel ajusteMargin">Selecione o relatório</h2>
         <div class="gridHome">
-            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio1()">Exibir quantidade de resultados por status</button>
+            <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio1()">Exibir resultados </button>
             <button class="btn btn-lg px-5 btn btn-success" @click="mudarParaORelatorio2()">Aeroportos próximos no território brasileiro</button>
         </div>
         <div class="relatorio" v-if="relatorio1">
@@ -77,9 +77,31 @@ nome do status e sua contagem.</h3>
                 relatorio1: false,
                 relatorio2: false,
                 selecionado: 1,
-                statusList:[],
-                cidades: [],
-                busca: ""
+                resultadoPiloto: {
+                    totalVitorias: 2,
+                    porAno:[
+                        {
+                            ano: 2022,
+                            titulos: [
+                                'grampix'
+                            ]
+                        },
+                        {
+                            ano: 2023,
+                            titulos: [
+                                'grampix'
+                            ]
+                        }
+                    ],
+                    porCorrida:[
+                        {
+                            nomeCorrida: 'grampix',
+                            anos: [
+                                2022, 2023
+                            ]
+                        }
+                    ]
+                }
             }
         },
         methods:{

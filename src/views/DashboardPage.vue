@@ -2,6 +2,7 @@
     <div>
         <NavBar :tipo="permissoes" isDashPage />
         <DashAdmin v-if="permissoes == 'Administrador'"/>
+        <DashPiloto v-if="permissoes == 'Piloto'"/>
     </div>
     
 </template>
@@ -9,10 +10,11 @@
 <script>
 import NavBar from '../components/NavBar.vue'
 import DashAdmin from '../components/DashAdmin.vue'
+import DashPiloto from '../components/DashPiloto.vue'
 
 export default {
     name: 'DashboardPage',
-    components: { NavBar, DashAdmin },
+    components: { NavBar, DashAdmin, DashPiloto },
     data: function () {
         return {
             permissoes: [],

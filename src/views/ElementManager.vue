@@ -74,7 +74,7 @@ import PaginationTable from '../components/PaginationTable.vue';
 import SpinnerLoader from '../components/SpinnerLoader.vue'
 import NavBar from '../components/NavBar.vue'
 import ModalElement from '../components/ModalElement.vue'
-import AddElement from './AddElement.vue'
+import AddElement from '../components/AddElement.vue'
 
 export default {
     name: 'ElementManager',
