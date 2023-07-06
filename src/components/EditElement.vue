@@ -50,6 +50,9 @@
                             <div class="mb-2">
                                 <input v-model="element.groupId" type="text" class="form-control" placeholder="GroupId">
                             </div>
+                            <div class="mb-2">
+                                <input type="submit" class="btn btn-success" value="Atualizar">
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -59,9 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2">
-                <input type="submit" class="btn btn-success" value="Atualizar">
-            </div>
+
         </div>
     </div>
 </template>
